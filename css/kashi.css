@@ -1,0 +1,72 @@
+
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #ffe4e1, #e0f7fa, #fce4ec, #e8f5e9, #fff9c4);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #ff80ab;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #d81b60;
+      margin-bottom: 20px;
+    }
+
+    .lyrics {
+      line-height: 1.9;
+      font-size: 1.15em;
+      white-space: pre-line; /* 改行を反映 */
+    }
+
+    .lyrics span {
+        display: block;
+        margin: 1px 0;   /* ← 行間を狭める */
+        font-size: 1.1em;
+        }
+
+    /* 色分け */
+    .pu { color: #9c27b0; }
+    .r    { color: #e53935; }
+    .g  { color: #43a047; }
+    .y { color: #fbc02d; }
+    .o { color: #fb8c00; }
+    .b   { color: #1e88e5; }
+    .pi   { color: #ec407a; }
+
+    /* コール系 */
+    .call   { font-weight: bold; color: #e91e63; }
+    .shout  { font-weight: bold; color: #000; }
+
+    .back-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #e91e63;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    }
+    .back-button:hover {
+    background-color: #c2185b;
+    }

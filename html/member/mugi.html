@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>栗栖むぎ - iON!</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../img/ion!_banner.jpeg">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #fffde7; /* 薄いイエロー背景 */
+      color: #333;
+      padding: 20px;
+    }
+
+    .profile-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); /* 黄色系の影 */
+      text-align: center;
+      position: relative;
+    }
+
+    .profile-container h1 {
+      font-size: 2em;
+      color: #f9a825; /* 濃いめの黄 */
+      margin-bottom: 5px;
+    }
+
+    .profile-container .kana {
+      font-size: 1em;
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    .profile-img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.03);
+    }
+
+    .profile-info {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .profile-info p {
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      font-size: 1.2em;
+      text-decoration: none;
+      color: #fbc02d; /* 鮮やかな黄 */
+      font-weight: bold;
+    }
+
+    .social-links a:hover {
+      color: #f57f17; /* オレンジ寄りの濃黄 */
+    }
+
+    /* モーダル */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      padding-top: 40px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #fff;
+      font-size: 2em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #fff59d; /* パステル黄 */
+    }
+
+    /* アニメーション */
+    @keyframes zoomFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes zoomFadeOut {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+
+    .modal-content.animate-in {
+      animation: zoomFadeIn 0.3s ease;
+    }
+
+    .modal-content.animate-out {
+      animation: zoomFadeOut 0.3s ease forwards;
+    }
+
+    /* 戻るボタン */
+    .back-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #fbc02d; /* 黄ボタン */
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #f57f17; /* 濃黄 */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-container">
+    <h1>栗栖むぎ</h1>
+    <div class="kana">(KURISU MUGI)</div>
+
+    <img src="/img/mugi.jpeg" alt="栗栖むぎ" class="profile-img" id="mugiImg">
+
+    <div class="profile-info">
+      <p><strong>誕生日:</strong> 12/28 </p>
+      <p><strong>メンバーカラー:</strong> 黄 💛</p>
+      <p><strong>キャッチコピー:</strong>「むぎに むぎゅっと！」</p>
+      <div class="social-links">
+        <a href="https://x.com/iON_mugi_" target="_blank">X</a> |
+        <a href="https://www.tiktok.com/@ion_mugi_" target="_blank">TikTok</a>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="../../index.html" class="back-button">トップへ戻る</a>
+    </div>
+  </div>
+
+  <!-- モーダル -->
+  <div id="imgModal" class="modal">
+    <span class="close" id="closeModal">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
+  <script>
+    const modal = document.getElementById('imgModal');
+    const modalImg = document.getElementById('modalImg');
+    const closeBtn = document.getElementById('closeModal');
+    const mugiImg = document.getElementById('mugiImg');
+
+    mugiImg.onclick = () => {
+      modal.style.display = "block";
+      modalImg.src = mugiImg.src;
+      modalImg.classList.add("animate-in");
+    };
+
+    function closeModal() {
+      modalImg.classList.remove("animate-in");
+      modalImg.classList.add("animate-out");
+
+      modalImg.addEventListener('animationend', () => {
+        modal.style.display = "none";
+        modalImg.classList.remove("animate-out");
+      }, { once: true });
+    }
+
+    closeBtn.onclick = closeModal;
+
+    window.onclick = (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    };
+  </script>
+</body>
+</html>
