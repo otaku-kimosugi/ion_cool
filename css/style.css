@@ -1,5 +1,6 @@
 html, body {
   height: 100%;
+  margin: 0;
   font-family: 'Helvetica Neue', sans-serif;
   background: linear-gradient(
   135deg,
@@ -23,7 +24,6 @@ html, body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
 
 /* ヘッダー全体 */
 header {
