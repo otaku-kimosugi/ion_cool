@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>iON!コール表</title>
+  <title>iON!楽曲 歌詞＋コール表</title>
   <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="icon" href="img/ion!_banner.jpeg"> <!-- ここでタブの画像指定-->
@@ -17,7 +17,7 @@
       <a href="#" id="scrollTop" class="logo">
         <img src="img/ion!.jpg" alt="iON!ロゴ">
       </a>
-      <h1>iON! コール表</h1>
+      <h1>iON!楽曲 歌詞＋コール表</h1>
     </div>
 
     <!-- 右側：ナビゲーション -->
@@ -28,8 +28,18 @@
         <li><a href="contact" id="navContact">お問い合わせ</a></li>
       </ul>
     </nav>
+    <button class="hamburger" id="hamburgerBtn">≡</button>
   </div>
 </header>
+
+<!-- スマホ用ドロワーメニュー -->
+<nav class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html" id="navHomeSp">ホーム</a></li>
+    <li><a href="#music-list" id="navMusicSp">ミュージックリスト</a></li>
+    <li><a href="#contact" id="navContactSp">お問い合わせ</a></li>
+  </ul>
+</nav>
 
   <img src="img/ion!.jpeg" class="ion-main">
 
@@ -39,7 +49,7 @@
     <ul>
       <li><a href="index.html">トップ</a></li>
       
-      <!-- ▼ メンバー紹介（クリックで展開） -->
+      <!-- ▼ メンバー紹介 (クリックで展開 ) -->
       <li>
         <a href="#" id="memberToggle">メンバー紹介 ▾</a>
         <ul id="memberList" class="submenu">
@@ -146,6 +156,9 @@
     const sideMenu = document.getElementById('sideMenu');
     const overlay = document.getElementById('overlay');
     const menuClose = document.getElementById('menuClose');
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
 
     menuToggle.addEventListener('click', () => {
       sideMenu.classList.add('open');
@@ -155,9 +168,14 @@
       sideMenu.classList.remove('open');
       overlay.classList.remove('show');
     });
-    overlay.addEventListener('click', () => {
-      sideMenu.classList.remove('open');
-      overlay.classList.remove('show');
+    hamburgerBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+      overlay.classList.toggle("show");
+    });
+
+    overlay.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      overlay.classList.remove("show");
     });
 
     // OKボタン処理
@@ -249,6 +267,11 @@ function smoothScroll(target) {
   document.getElementById("navContact").addEventListener("click", (e) => {
     e.preventDefault();
     smoothScroll("contact");
+  });
+    // 背景クリックで閉じる
+  memberOverlay.addEventListener("click", () => {
+    memberBox.style.display = "none";
+    memberOverlay.classList.remove("show");
   });
   </script>
 </body>
