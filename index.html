@@ -272,21 +272,6 @@ function smoothScroll(target) {
     });
   }
 
-  // クリックイベント
-  document.getElementById("navHome").addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  document.getElementById("navMusic").addEventListener("click", (e) => {
-    e.preventDefault();
-    smoothScroll("music-list");
-  });
-
-  document.getElementById("navContact").addEventListener("click", (e) => {
-    e.preventDefault();
-    smoothScroll("contact");
-  });
     // 背景クリックで閉じる
   memberOverlay.addEventListener("click", () => {
     memberBox.style.display = "none";

@@ -264,7 +264,7 @@ button:hover { transform: scale(1.05); }
   font-weight: bold;
 }
 
-モーダル
+/* モーダル */
 .modal {
   display: none;
   position: fixed;
