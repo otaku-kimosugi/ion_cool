@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>宇野ゆり - iON!</title>
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="../img/ion!_banner.jpeg">
   <style>
     body {
@@ -36,16 +37,83 @@
       margin-bottom: 20px;
     }
 
+    /* ===== 画像スライダー部分 ===== */
+    .image-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    /* ===== 画像切り替えアニメーション ===== */
     .profile-img {
       width: 100%;
       max-width: 300px;
       border-radius: 10px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: opacity 0.6s ease, transform 0.4s ease;
+      opacity: 1;
+    }
+
+    .profile-img.fade-out {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+
+    .profile-img.fade-in {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .profile-img:hover {
       transform: scale(1.03);
+    }
+
+    /* ＜ ＞ ナビゲーションボタン */
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.85);
+      color: #e91e63;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(233, 30, 99, 0.25);
+      transition: all 0.25s ease;
+      z-index: 5;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateY(-50%) scale(1.15);
+    }
+
+    /* 左右の位置調整 */
+    .prev-btn {
+      left: -55px; /* 画像の外に少し出す */
+    }
+    .next-btn {
+      right: -55px;
+    }
+
+    /* スマホ用に位置とサイズを調整 */
+    @media (max-width: 600px) {
+      .nav-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
+      .prev-btn { left: -30px; }
+      .next-btn { right: -30px; }
     }
 
     .profile-info {
@@ -64,6 +132,7 @@
       text-decoration: none;
       color: #e53935; /* 鮮やかな赤 */
       font-weight: bold;
+      transition: color 0.3s ease;
     }
 
     .social-links a:hover {
@@ -89,6 +158,7 @@
       display: block;
       max-width: 90%;
       max-height: 90%;
+      animation: zoomFadeIn 0.4s ease;
     }
 
     .close {
@@ -124,6 +194,22 @@
       animation: zoomFadeOut 0.3s ease forwards;
     }
 
+    /* モーダル左右ナビ */
+    .modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.5em;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      padding: 0 20px;
+      transition: opacity 0.2s;
+    }
+    .modal-nav:hover { opacity: 0.7; }
+    .modal-prev { left: 0; }
+    .modal-next { right: 0; }
+
     /* 戻るボタン */
     .back-button {
       display: inline-block;
@@ -147,7 +233,16 @@
     <h1>宇野ゆり</h1>
     <div class="kana">(UNO YURI)</div>
 
-    <img src="/img/yuri.jpeg" alt="宇野ゆり" class="profile-img" id="yuriImg">
+     <!-- ▼ 画像スライダー -->
+      <div class="image-wrapper">
+        <button class="nav-btn prev-btn" id="prevBtn">
+          <i class="fa-solid fa-angle-left"></i>
+        </button>
+        <img src="/img/yuri.jpeg" alt="宇野ゆり" class="profile-img" id="yuriImg">
+        <button class="nav-btn next-btn" id="nextBtn">
+          <i class="fa-solid fa-angle-right"></i>
+        </button>
+      </div>
 
     <div class="profile-info">
       <p><strong>誕生日:</strong> 2/22 </p>
@@ -167,19 +262,54 @@
   <!-- モーダル -->
   <div id="imgModal" class="modal">
     <span class="close" id="closeModal">&times;</span>
+    <span class="modal-nav modal-prev" id="modalPrev">＜</span>
     <img class="modal-content" id="modalImg">
+    <span class="modal-nav modal-next" id="modalNext">＞</span>
   </div>
 
   <script>
-    const modal = document.getElementById('imgModal');
-    const modalImg = document.getElementById('modalImg');
-    const closeBtn = document.getElementById('closeModal');
-    const yuriImg = document.getElementById('yuriImg');
+
+     const images = [
+      "/img/yuri.jpeg",
+      "/img/yuri2.jpeg"
+    ];
+    let current = 0;
+
+    const yuriImg = document.getElementById("yuriImg");
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImg");
+    const closeBtn = document.getElementById("closeModal");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const modalPrev = document.getElementById("modalPrev");
+    const modalNext = document.getElementById("modalNext");
+
+   function updateImage() {
+    yuriImg.classList.add("fade-out");
+
+    setTimeout(() => {
+      yuriImg.src = images[current];
+      yuriImg.classList.remove("fade-out");
+      yuriImg.classList.add("fade-in");
+
+      setTimeout(() => {
+        yuriImg.classList.remove("fade-in");
+      }, 400);
+    }, 300);
+  }
+    prevBtn.onclick = modalPrev.onclick = () => {
+      current = (current - 1 + images.length) % images.length;
+      updateImage();
+    };
+
+    nextBtn.onclick = modalNext.onclick = () => {
+      current = (current + 1) % images.length;
+      updateImage();
+    };
 
     yuriImg.onclick = () => {
       modal.style.display = "block";
-      modalImg.src = yuriImg.src;
-      modalImg.classList.add("animate-in");
+      modalImg.src = images[current];
     };
 
     function closeModal() {

@@ -4,128 +4,188 @@
   <meta charset="UTF-8">
   <title>儚寧この - iON!</title>
   <link rel="stylesheet" href="../css/style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="../img/ion!_banner.jpeg">
   <style>
-    body {
-      font-family: 'Helvetica Neue', sans-serif;
-      background-color: #f0fff4; /* 薄いグリーン背景 */
-      color: #333;
-      padding: 20px;
-    }
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #f0fff4; /* 優しいミントグリーン背景 */
+  color: #333;
+  padding: 20px;
+}
 
-    .profile-container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 15px rgba(100, 200, 100, 0.3); /* 緑系の影 */
-      text-align: center;
+.profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(100, 200, 100, 0.3); /* 緑系の柔らかい影 */
+  text-align: center;
+  position: relative;
+}
+
+.profile-container h1 {
+  font-size: 2em;
+  color: #2e7d32; /* 深めの緑 */
+  margin-bottom: 5px;
+}
+
+.profile-container .kana {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+   /* ===== 画像スライダー部分 ===== */
+    .image-wrapper {
       position: relative;
+      display: inline-block;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
     }
 
-    .profile-container h1 {
-      font-size: 2em;
-      color: #2e7d32; /* 深い緑 */
-      margin-bottom: 5px;
-    }
-
-    .profile-container .kana {
-      font-size: 1em;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
+    /* ===== 画像切り替えアニメーション ===== */
     .profile-img {
       width: 100%;
       max-width: 300px;
       border-radius: 10px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: opacity 0.6s ease, transform 0.4s ease;
+      opacity: 1;
+    }
+
+    .profile-img.fade-out {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+
+    .profile-img.fade-in {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .profile-img:hover {
       transform: scale(1.03);
     }
+/* ＜ ＞ ボタン共通 */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #43a047; /* 緑 */
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(67, 160, 71, 0.25);
+  transition: all 0.25s ease;
+  z-index: 5;
+}
 
-    .profile-info {
-      margin-top: 20px;
-      text-align: left;
+.nav-btn:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateY(-50%) scale(1.15);
     }
 
-    .profile-info p {
-      margin: 10px 0;
-      font-size: 1.1em;
+    /* 左右の位置調整 */
+    .prev-btn {
+      left: -55px; /* 画像の外に少し出す */
+    }
+    .next-btn {
+      right: -55px;
     }
 
-    .social-links a {
-      margin: 0 10px;
-      font-size: 1.2em;
-      text-decoration: none;
-      color: #388e3c; /* 明るめの緑 */
-      font-weight: bold;
+
+    /* スマホ用に位置とサイズを調整 */
+    @media (max-width: 600px) {
+      .nav-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
+      .prev-btn { left: -30px; }
+      .next-btn { right: -30px; }
     }
 
-    .social-links a:hover {
-      color: #1b5e20; /* 濃い緑に変化 */
-    }
+/* 情報テキスト */
+.profile-info {
+  margin-top: 20px;
+  text-align: left;
+}
 
-    /* モーダル */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      padding-top: 40px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.8);
-    }
+.profile-info p {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
 
-    .modal-content {
-      margin: auto;
-      display: block;
-      max-width: 90%;
-      max-height: 90%;
-    }
+/* SNSリンク */
+.social-links a {
+  margin: 0 10px;
+  font-size: 1.2em;
+  text-decoration: none;
+  color: #43a047; /* 明るめの緑 */
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
 
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: #fff;
-      font-size: 2em;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.social-links a:hover {
+  color: #1b5e20; /* 深い森のような緑に変化 */
+}
 
-    .close:hover {
-      color: #a5d6a7; /* 緑がかったホバー色 */
-    }
+/* モーダル */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  padding-top: 40px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 50, 0, 0.7); /* 緑がかった黒背景 */
+}
 
-    /* アニメーション */
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  animation: zoomFadeIn 0.4s ease;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 2em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #a5d6a7; /* 薄い緑に変化 */
+}
+
+  /* アニメーション */
     @keyframes zoomFadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     @keyframes zoomFadeOut {
-      from {
-        opacity: 1;
-        transform: scale(1);
-      }
-      to {
-        opacity: 0;
-        transform: scale(0.8);
-      }
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.8); }
     }
 
     .modal-content.animate-in {
@@ -136,21 +196,37 @@
       animation: zoomFadeOut 0.3s ease forwards;
     }
 
-    /* 戻るボタン */
-    .back-button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #43a047; /* 緑ボタン */
+    /* モーダル左右ナビ */
+    .modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.5em;
       color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background-color 0.3s;
+      cursor: pointer;
+      user-select: none;
+      padding: 0 20px;
+      transition: opacity 0.2s;
     }
+    .modal-nav:hover { opacity: 0.7; }
+    .modal-prev { left: 0; }
+    .modal-next { right: 0; }
 
-    .back-button:hover {
-      background-color: #2e7d32; /* 濃い緑 */
-    }
+/* 戻るボタン */
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #43a047; /* 明るい緑ボタン */
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #2e7d32; /* 濃い緑に */
+}
   </style>
 </head>
 <body>
@@ -159,7 +235,16 @@
     <h1>儚寧この</h1>
     <div class="kana">(HAKANE KONO)</div>
 
-    <img src="/img/kono.jpeg" alt="儚寧この" class="profile-img" id="konoImg">
+    <!-- ▼ 画像スライダー -->
+      <div class="image-wrapper">
+        <button class="nav-btn prev-btn" id="prevBtn">
+          <i class="fa-solid fa-angle-left"></i>
+        </button>
+        <img src="/img/kono.jpeg" alt="儚寧この" class="profile-img" id="konoImg">
+        <button class="nav-btn next-btn" id="nextBtn">
+          <i class="fa-solid fa-angle-right"></i>
+        </button>
+      </div>
 
     <div class="profile-info">
       <p><strong>誕生日:</strong> </p>
@@ -179,28 +264,62 @@
     </div>
   </div>
 
-  <!-- モーダル -->
+ <!-- モーダル -->
   <div id="imgModal" class="modal">
     <span class="close" id="closeModal">&times;</span>
+    <span class="modal-nav modal-prev" id="modalPrev">＜</span>
     <img class="modal-content" id="modalImg">
+    <span class="modal-nav modal-next" id="modalNext">＞</span>
   </div>
 
   <script>
-    const modal = document.getElementById('imgModal');
-    const modalImg = document.getElementById('modalImg');
-    const closeBtn = document.getElementById('closeModal');
-    const ririImg = document.getElementById('konoImg');
 
-   konoImg.onclick = () => {
+     const images = [
+      "/img/kono.jpeg",
+      "/img/kono2.jpeg"
+    ];
+    let current = 0;
+
+    const konoImg = document.getElementById("konoImg");
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImg");
+    const closeBtn = document.getElementById("closeModal");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const modalPrev = document.getElementById("modalPrev");
+    const modalNext = document.getElementById("modalNext");
+
+   function updateImage() {
+    konoImg.classList.add("fade-out");
+
+    setTimeout(() => {
+      konoImg.src = images[current];
+      konoImg.classList.remove("fade-out");
+      konoImg.classList.add("fade-in");
+
+      setTimeout(() => {
+        konoImg.classList.remove("fade-in");
+      }, 400);
+    }, 300);
+  }
+    prevBtn.onclick = modalPrev.onclick = () => {
+      current = (current - 1 + images.length) % images.length;
+      updateImage();
+    };
+
+    nextBtn.onclick = modalNext.onclick = () => {
+      current = (current + 1) % images.length;
+      updateImage();
+    };
+
+    konoImg.onclick = () => {
       modal.style.display = "block";
-      modalImg.src = konoImg.src;
-      modalImg.classList.add("animate-in");
+      modalImg.src = images[current];
     };
 
     function closeModal() {
       modalImg.classList.remove("animate-in");
       modalImg.classList.add("animate-out");
-
       modalImg.addEventListener('animationend', () => {
         modal.style.display = "none";
         modalImg.classList.remove("animate-out");
@@ -214,7 +333,6 @@
         closeModal();
       }
     };
-
   </script>
 </body>
 </html>

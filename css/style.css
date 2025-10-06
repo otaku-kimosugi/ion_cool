@@ -1,22 +1,22 @@
 html, body {
-  height: 100%;
+  min-height: 100%; /* ← heightじゃなくてmin-heightにする */
   margin: 0;
   font-family: 'Helvetica Neue', sans-serif;
   background: linear-gradient(
-  135deg,
-  #ffb3b3,  /* 薄い赤 */
-  #b3d1ff,  /* 薄い青 */
-  #fff5b3,  /* 薄い黄 */
-  #ffb3e6,  /* 薄いピンク */
-  #b3ffcc,  /* 薄い緑 */
-  #ffd9b3,  /* 薄いオレンジ */
-  #d1b3ff   /* 薄い紫 */
-);
-  background-size: 300% 300%;
+    135deg,
+    #ffb3b3,  /* 薄い赤 */
+    #b3d1ff,  /* 薄い青 */
+    #fff5b3,  /* 薄い黄 */
+    #ffb3e6,  /* 薄いピンク */
+    #b3ffcc,  /* 薄い緑 */
+    #ffd9b3,  /* 薄いオレンジ */
+    #d1b3ff   /* 薄い紫 */
+  );
+  background-size: 400% 300%;
   animation: gradientBG 12s ease infinite;
   display: flex;
   flex-direction: column;
-  padding-top: 80px; /* ヘッダーの高さ分だけ余白を作って、隠れないように */
+  padding-top: 80px; /* ヘッダー分の余白 */
 }
 
 @keyframes gradientBG {
@@ -237,7 +237,34 @@ button:hover { transform: scale(1.05); }
   font-size: 1em;
 }
 
-/* モーダル */
+.how-to-read {
+  max-width: 800px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.9);
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-size: 0.95em;
+}
+
+.how-to-read h2 {
+  color: #e91e63;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.how-to-read ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+.how-to-read li {
+  margin: 6px 0;
+  font-weight: bold;
+}
+
+モーダル
 .modal {
   display: none;
   position: fixed;
@@ -327,3 +354,6 @@ footer {
   .header-nav { display: none; }   /* PCナビ非表示 */
   .hamburger { display: block; }  
 }
+
+
+

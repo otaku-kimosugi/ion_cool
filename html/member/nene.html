@@ -4,142 +4,214 @@
   <meta charset="UTF-8">
   <title>恋春ねね - iON!</title>
   <link rel="stylesheet" href="../css/style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="../img/ion!_banner.jpeg">
-  <style>
-    body {
-      font-family: 'Helvetica Neue', sans-serif;
-      background-color: #fff0f6; /* 薄いピンク背景 */
-      color: #333;
-      padding: 20px;
-    }
+<style>
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #fff0f6; /* ミルキーピンク背景 */
+    color: #333;
+    padding: 20px;
+  }
 
-    .profile-container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 15px rgba(255, 105, 180, 0.3); /* ピンク系の影 */
-      text-align: center;
-      position: relative;
-    }
+  .profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(255, 128, 171, 0.3); /* ピンクのやわらかい影 */
+    text-align: center;
+    position: relative;
+  }
 
-    .profile-container h1 {
-      font-size: 2em;
-      color: #e91e63; /* 濃いピンク */
-      margin-bottom: 5px;
-    }
+  .profile-container h1 {
+    font-size: 2em;
+    color: #e91e63; /* ビビッドピンク */
+    margin-bottom: 5px;
+  }
 
-    .profile-container .kana {
-      font-size: 1em;
-      color: #777;
-      margin-bottom: 20px;
-    }
+  .profile-container .kana {
+    font-size: 1em;
+    color: #777;
+    margin-bottom: 20px;
+  }
 
-    .profile-img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+  /* ===== 画像スライダー部分 ===== */
+  .image-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
 
-    .profile-img:hover {
-      transform: scale(1.03);
-    }
+  /* ===== 画像切り替えアニメーション ===== */
+  .profile-img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.6s ease, transform 0.4s ease, box-shadow 0.3s ease;
+    opacity: 1;
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.25);
+  }
 
-    .profile-info {
-      margin-top: 20px;
-      text-align: left;
-    }
+  .profile-img.fade-out {
+    opacity: 0;
+    transform: scale(0.97);
+  }
 
-    .profile-info p {
-      margin: 10px 0;
-      font-size: 1.1em;
-    }
+  .profile-img.fade-in {
+    opacity: 1;
+    transform: scale(1);
+  }
 
-    .social-links a {
-      margin: 0 10px;
-      font-size: 1.2em;
-      text-decoration: none;
-      color: #ec407a; /* 明るいピンク */
-      font-weight: bold;
-    }
+  .profile-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(233, 30, 99, 0.4);
+  }
 
-    .social-links a:hover {
-      color: #ad1457; /* 濃いピンク */
-    }
+  /* ＜ ＞ ナビゲーションボタン */
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #ec407a; /* 少し明るめのピンク */
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(233, 30, 99, 0.25);
+    transition: all 0.25s ease;
+    z-index: 5;
+  }
 
-    /* モーダル */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      padding-top: 40px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.8);
-    }
+  .nav-btn:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-50%) scale(1.15);
+  }
 
-    .modal-content {
-      margin: auto;
-      display: block;
-      max-width: 90%;
-      max-height: 90%;
-    }
+  /* 左右の位置 */
+  .prev-btn { left: -55px; }
+  .next-btn { right: -55px; }
 
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: #fff;
-      font-size: 2em;
-      font-weight: bold;
-      cursor: pointer;
+  /* スマホ用調整 */
+  @media (max-width: 600px) {
+    .nav-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 16px;
     }
+    .prev-btn { left: -30px; }
+    .next-btn { right: -30px; }
+  }
 
-    .close:hover {
-      color: #f8bbd0; /* パステルピンク */
-    }
+  /* ===== プロフィール情報 ===== */
+  .profile-info {
+    margin-top: 20px;
+    text-align: left;
+  }
 
-    /* アニメーション */
-    @keyframes zoomFadeIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
+  .profile-info p {
+    margin: 10px 0;
+    font-size: 1.1em;
+  }
 
-    @keyframes zoomFadeOut {
-      from { opacity: 1; transform: scale(1); }
-      to { opacity: 0; transform: scale(0.8); }
-    }
+  /* ===== SNSリンク ===== */
+  .social-links a {
+    margin: 0 10px;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #ec407a; /* 明るいピンク */
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
 
-    .modal-content.animate-in {
-      animation: zoomFadeIn 0.3s ease;
-    }
+  .social-links a:hover {
+    color: #ad1457; /* 濃いめのピンク */
+  }
 
-    .modal-content.animate-out {
-      animation: zoomFadeOut 0.3s ease forwards;
-    }
+  /* ===== モーダル ===== */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    padding-top: 40px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(80, 0, 40, 0.7); /* ピンク系の暗背景 */
+  }
 
-    /* 戻るボタン */
-    .back-button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #ec407a; /* ピンクボタン */
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
+  .modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    animation: zoomFadeIn 0.4s ease;
+  }
 
-    .back-button:hover {
-      background-color: #ad1457; /* 濃ピンク */
-    }
-  </style>
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    color: #f8bbd0; /* 薄ピンク */
+  }
+
+  /* ===== アニメーション ===== */
+  @keyframes zoomFadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes zoomFadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.8); }
+  }
+
+  .modal-content.animate-in {
+    animation: zoomFadeIn 0.3s ease;
+  }
+
+  .modal-content.animate-out {
+    animation: zoomFadeOut 0.3s ease forwards;
+  }
+
+  /* ===== 戻るボタン ===== */
+  .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ec407a; /* 鮮やかピンク */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  .back-button:hover {
+    background-color: #ad1457;
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.5);
+  }
+</style>
 </head>
 <body>
 
@@ -147,7 +219,16 @@
     <h1>恋春ねね</h1>
     <div class="kana">(KOHARU NENE)</div>
 
-    <img src="/img/nene.jpeg" alt="恋春ねね" class="profile-img" id="neneImg">
+   <!-- ▼ 画像スライダー -->
+      <div class="image-wrapper">
+        <button class="nav-btn prev-btn" id="prevBtn">
+          <i class="fa-solid fa-angle-left"></i>
+        </button>
+        <img src="/img/nene.jpeg" alt="恋春ねね" class="profile-img" id="neneImg">
+        <button class="nav-btn next-btn" id="nextBtn">
+          <i class="fa-solid fa-angle-right"></i>
+        </button>
+      </div>
 
     <div class="profile-info">
       <p><strong>誕生日:</strong> 11/12 </p>
@@ -165,21 +246,57 @@
   </div>
 
   <!-- モーダル -->
+   <!-- モーダル -->
   <div id="imgModal" class="modal">
     <span class="close" id="closeModal">&times;</span>
+    <span class="modal-nav modal-prev" id="modalPrev">＜</span>
     <img class="modal-content" id="modalImg">
+    <span class="modal-nav modal-next" id="modalNext">＞</span>
   </div>
 
   <script>
-    const modal = document.getElementById('imgModal');
-    const modalImg = document.getElementById('modalImg');
-    const closeBtn = document.getElementById('closeModal');
-    const neneImg = document.getElementById('neneImg');
+
+     const images = [
+      "/img/nene.jpeg",
+      "/img/nene2.jpeg"
+    ];
+    let current = 0;
+
+    const neneImg = document.getElementById("neneImg");
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImg");
+    const closeBtn = document.getElementById("closeModal");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const modalPrev = document.getElementById("modalPrev");
+    const modalNext = document.getElementById("modalNext");
+
+   function updateImage() {
+    neneImg.classList.add("fade-out");
+
+    setTimeout(() => {
+      neneImg.src = images[current];
+      neneImg.classList.remove("fade-out");
+      neneImg.classList.add("fade-in");
+
+      setTimeout(() => {
+        neneImg.classList.remove("fade-in");
+      }, 400);
+    }, 300);
+  }
+    prevBtn.onclick = modalPrev.onclick = () => {
+      current = (current - 1 + images.length) % images.length;
+      updateImage();
+    };
+
+    nextBtn.onclick = modalNext.onclick = () => {
+      current = (current + 1) % images.length;
+      updateImage();
+    };
 
     neneImg.onclick = () => {
       modal.style.display = "block";
-      modalImg.src = neneImg.src;
-      modalImg.classList.add("animate-in");
+      modalImg.src = images[current];
     };
 
     function closeModal() {
