@@ -131,6 +131,23 @@
     color: #ff4f81;
     }
 
+  .header-title {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 1.7em;
+    background: linear-gradient(90deg, #ff77aa, #ffa3c1, #ffbad7);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 6px rgba(255, 170, 200, 0.3);
+    letter-spacing: 0.05em;
+    transition: transform 0.25s ease, text-shadow 0.25s ease;
+  }
+
+  .header-title:hover {
+    transform: scale(1.05);
+    text-shadow: 0 4px 10px rgba(255, 150, 200, 0.5);
+  }
+
     /* メンバー色リストパネル */
   /* メンバー表 */
   .member-panel {
