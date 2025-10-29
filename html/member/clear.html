@@ -2,32 +2,34 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>儚寧この - iON!</title>
+  <title>透明くりあ - iON!</title>
   <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="../img/ion!_banner.jpeg">
-  <style>
+<style>
 body {
   font-family: 'Helvetica Neue', sans-serif;
-  background-color: #f0fff4; /* 優しいミントグリーン背景 */
+  background-color: #ffffff; /* 完全なホワイト背景 */
   color: #333;
   padding: 20px;
 }
 
+/* メインプロフィールカード */
 .profile-container {
   max-width: 600px;
   margin: 0 auto;
-  background: white;
+  background: #ffffff;
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 0 15px rgba(100, 200, 100, 0.3); /* 緑系の柔らかい影 */
+  box-shadow: 0 0 25px rgba(3, 169, 244, 0.20); /* 水色系の柔らかい影 */
   text-align: center;
   position: relative;
+  border: 2px solid #e0f5ff; /* 薄い水色の枠 */
 }
 
 .profile-container h1 {
   font-size: 2em;
-  color: #2e7d32; /* 深めの緑 */
+  color: #0288d1; /* 深めの水色 */
   margin-bottom: 5px;
 }
 
@@ -37,39 +39,43 @@ body {
   margin-bottom: 20px;
 }
 
-   /* ===== 画像スライダー部分 ===== */
-    .image-wrapper {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-      max-width: 320px;
-      margin: 0 auto;
-    }
+/* ===== 画像スライダー部 ===== */
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
 
-    /* ===== 画像切り替えアニメーション ===== */
-    .profile-img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: opacity 0.6s ease, transform 0.4s ease;
-      opacity: 1;
-    }
+/* プロフィール画像 */
+.profile-img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.6s ease, transform 0.4s ease;
+  opacity: 1;
+  border: 3px solid #b3e5fc; /* 薄水色枠 */
+  box-shadow: 0 6px 18px rgba(2, 119, 189, 0.20);
+}
 
-    .profile-img.fade-out {
-      opacity: 0;
-      transform: scale(0.97);
-    }
+.profile-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(2, 119, 189, 0.25);
+}
 
-    .profile-img.fade-in {
-      opacity: 1;
-      transform: scale(1);
-    }
+.profile-img.fade-out {
+  opacity: 0;
+  transform: scale(0.96);
+}
 
-    .profile-img:hover {
-      transform: scale(1.03);
-    }
-/* ＜ ＞ ボタン共通 */
+.profile-img.fade-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ナビボタン（＜＞） */
 .nav-btn {
   position: absolute;
   top: 50%;
@@ -78,49 +84,37 @@ body {
   border-radius: 50%;
   width: 42px;
   height: 42px;
-  background: rgba(255, 255, 255, 0.8);
-  color: #43a047; /* 緑 */
+  background: #ffffff;
+  color: #03a9f4;
   font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(67, 160, 71, 0.25);
+  box-shadow: 0 4px 12px rgba(3,169,244,0.25);
   transition: all 0.25s ease;
   z-index: 5;
 }
 
 .nav-btn:hover {
-      background: rgba(255, 255, 255, 0.95);
-      transform: translateY(-50%) scale(1.15);
-    }
+  background: #e1f5fe;
+  transform: translateY(-50%) scale(1.15);
+}
 
-    /* 左右の位置調整 */
-    .prev-btn {
-      left: -55px; /* 画像の外に少し出す */
-    }
-    .next-btn {
-      right: -55px;
-    }
+.prev-btn { left: -55px; }
+.next-btn { right: -55px; }
 
+@media (max-width: 600px) {
+  .nav-btn { width: 36px; height: 36px; font-size: 16px; }
+  .prev-btn { left: -30px; }
+  .next-btn { right: -30px; }
+}
 
-    /* スマホ用に位置とサイズを調整 */
-    @media (max-width: 600px) {
-      .nav-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-      }
-      .prev-btn { left: -30px; }
-      .next-btn { right: -30px; }
-    }
-
-/* 情報テキスト */
+/* プロフィール情報 */
 .profile-info {
   margin-top: 20px;
   text-align: left;
 }
-
 .profile-info p {
   margin: 10px 0;
   font-size: 1.1em;
@@ -131,13 +125,12 @@ body {
   margin: 0 10px;
   font-size: 1.2em;
   text-decoration: none;
-  color: #43a047; /* 明るめの緑 */
+  color: #0288d1;
   font-weight: bold;
   transition: color 0.3s ease;
 }
-
 .social-links a:hover {
-  color: #1b5e20; /* 深い森のような緑に変化 */
+  color: #01579b;
 }
 
 /* モーダル */
@@ -146,12 +139,9 @@ body {
   position: fixed;
   z-index: 10;
   padding-top: 40px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   overflow: auto;
-  background-color: rgba(0, 50, 0, 0.7); /* 緑がかった黒背景 */
+  background-color: rgba(0, 70, 110, 0.75);
 }
 
 .modal-content {
@@ -160,7 +150,7 @@ body {
   max-width: 90%;
   max-height: 90%;
   border-radius: 10px;
-  animation: zoomFadeIn 0.4s ease;
+  box-shadow: 0 6px 24px rgba(255,255,255,0.2);
 }
 
 .close {
@@ -172,75 +162,51 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
-
 .close:hover {
-  color: #a5d6a7; /* 薄い緑に変化 */
+  color: #b3e5fc;
 }
 
-  /* アニメーション */
-    @keyframes zoomFadeIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes zoomFadeOut {
-      from { opacity: 1; transform: scale(1); }
-      to { opacity: 0; transform: scale(0.8); }
-    }
-
-    .modal-content.animate-in {
-      animation: zoomFadeIn 0.3s ease;
-    }
-
-    .modal-content.animate-out {
-      animation: zoomFadeOut 0.3s ease forwards;
-    }
-
-    /* モーダル左右ナビ */
-    .modal-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2.5em;
-      color: white;
-      cursor: pointer;
-      user-select: none;
-      padding: 0 20px;
-      transition: opacity 0.2s;
-    }
-    .modal-nav:hover { opacity: 0.7; }
-    .modal-prev { left: 0; }
-    .modal-next { right: 0; }
+/* モーダル左右ナビ */
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5em;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+.modal-prev { left: 0; padding-left: 20px; }
+.modal-next { right: 0; padding-right: 20px; }
 
 /* 戻るボタン */
 .back-button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #43a047; /* 明るい緑ボタン */
+  background-color: #03a9f4;
   color: white;
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
-
 .back-button:hover {
-  background-color: #2e7d32; /* 濃い緑に */
+  background-color: #0288d1;
 }
-  </style>
+</style>
 </head>
 <body>
 
   <div class="profile-container">
-    <h1>儚寧この</h1>
-    <div class="kana">(HAKANE KONO)</div>
+    <h1>透明くりあ</h1>
+    <div class="kana">(TOMARI CLEAR)</div>
 
     <!-- ▼ 画像スライダー -->
       <div class="image-wrapper">
         <button class="nav-btn prev-btn" id="prevBtn">
           <i class="fa-solid fa-angle-left"></i>
         </button>
-        <img src="/img/member/kono.jpeg" alt="儚寧この" class="profile-img" id="konoImg">
+        <img src="/img/member/clear.jpeg" alt="儚寧この" class="profile-img" id="clearImg">
         <button class="nav-btn next-btn" id="nextBtn">
           <i class="fa-solid fa-angle-right"></i>
         </button>
@@ -248,13 +214,13 @@ body {
 
     <div class="profile-info">
       <p><strong>誕生日:</strong> </p>
-      <p><strong>メンバーカラー:</strong> 緑 💚</p>
+      <p><strong>メンバーカラー:</strong> 白 🤍</p>
       <!-- <p><strong>身長:</strong>156cm</p> -->
-      <p><strong>キャッチコピー:</strong>「この子が一番！はかねこの！」</p>
+      <p><strong>キャッチコピー:</strong></p>
       <div class="social-links">
-        <a href="https://x.com/iON_kono_" target="_blank">X</a> |
+        <a href="https://x.com/iON__kuria_" target="_blank">X</a> |
         <!-- <a href="https://www.instagram.com/riri_ilife/" target="_blank">Instagram</a> | -->
-        <a href="https://www.tiktok.com/@ion_kono_" target="_blank">TikTok</a> |
+        <a href="https://www.tiktok.com/@ion_kuria_" target="_blank">TikTok</a> |
         <!-- <a href="https://ilife-heroines.com/profile/member/index/464" target="_blank">公式プロフィール</a> -->
       </div>
     </div>
@@ -275,13 +241,11 @@ body {
   <script>
 
      const images = [
-      "/img/member/kono.jpeg",
-      "/img/member/kono2.jpeg",
-      "/img/member/kono3.jpeg"
+      "/img/member/clear.jpeg"
     ];
     let current = 0;
 
-    const konoImg = document.getElementById("konoImg");
+    const clearImg = document.getElementById("clearImg");
     const modal = document.getElementById("imgModal");
     const modalImg = document.getElementById("modalImg");
     const closeBtn = document.getElementById("closeModal");
@@ -291,15 +255,15 @@ body {
     const modalNext = document.getElementById("modalNext");
 
    function updateImage() {
-    konoImg.classList.add("fade-out");
+    clearImg.classList.add("fade-out");
 
     setTimeout(() => {
-      konoImg.src = images[current];
-      konoImg.classList.remove("fade-out");
-      konoImg.classList.add("fade-in");
+      clearImg.src = images[current];
+      clearImg.classList.remove("fade-out");
+      clearImg.classList.add("fade-in");
 
       setTimeout(() => {
-        konoImg.classList.remove("fade-in");
+        clearImg.classList.remove("fade-in");
       }, 400);
     }, 300);
   }
@@ -313,7 +277,7 @@ body {
       updateImage();
     };
 
-    konoImg.onclick = () => {
+    clearImg.onclick = () => {
       modal.style.display = "block";
       modalImg.src = images[current];
     };
