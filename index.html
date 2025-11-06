@@ -2,46 +2,103 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>iON! 歌詞＋コール表 - バージョン選択</title>
+  <title>iON! 歌詞＆コール表 - Version Select</title>
   <link rel="icon" href="img/ion!_banner.jpeg">
   <style>
     body {
       font-family: "Helvetica Neue", sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      background: #fff;
-      padding: 50px;
+      background: linear-gradient(135deg, #ffe4f1, #e2f3ff); /* ピンク×水色グラデ */
+      animation: fadeIn 1s ease-in-out;
     }
+
+    .select-box {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(8px);
+      width: 90%;
+      max-width: 600px;
+      animation: slideUp 1s ease;
+    }
+
     h1 {
       font-size: 2rem;
-      margin-bottom: 20px;
+      color: #333;
+      margin-bottom: 10px;
     }
-    .version-buttons {
-      margin-top: 30px;
+    p {
+      color: #666;
+      margin-bottom: 30px;
     }
-    .version-buttons button {
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .ver-btn {
       padding: 12px 25px;
-      margin: 15px;
-      font-size: 1.1rem;
-      font-weight: bold;
+      border-radius: 30px;
       border: none;
-      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.2s;
+      transition: 0.25s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
-    .ver7 { background-color: #ff87b7; color: white; }
-    .ver9 { background-color: #6ec6ff; color: white; }
-    .ver7:hover { background-color: #ff5fa1; }
-    .ver9:hover { background-color: #4bb4ff; }
+
+    .ver7 {
+      background: #ff8fb7;
+      color: white;
+    }
+    .ver9 {
+      background: #6ec6ff;
+      color: white;
+    }
+    .ver7:hover { transform: scale(1.1); background: #ff78a4; }
+    .ver9:hover { transform: scale(1.1); background: #4bb4ff; }
+
+    /* アニメーション */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* 背景の星 */
+    .stars::before {
+      content: "✨";
+      font-size: 2rem;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      animation: twinkle 2s infinite;
+    }
+    @keyframes twinkle {
+      50% { opacity: 0.3; }
+    }
   </style>
 </head>
 <body>
-  <h1>表示するバージョンを選んでください</h1>
-  <p>iON! は7人体制 → 9人体制へ変わりました。<br>
-     過去の歌詞割も残してあります。</p>
-
-  <div class="version-buttons">
-    <button class="ver7" onclick="location.href='index_7.html'">🎤 7人体制（旧Ver.）</button>
-    <button class="ver9" onclick="location.href='index_9.html'">🎉 9人体制（新Ver.）</button>
+  <div class="select-box">
+    <h1>iON! 歌詞＋コール表</h1>
+    <p>表示する体制を選んでください👇</p>
+    <div class="btn-group">
+      <button class="ver-btn ver7" onclick="location.href='index_7.html'">🎤 7人体制（旧）</button>
+      <button class="ver-btn ver9" onclick="location.href='index_9.html'">🎉 9人体制（新）</button>
+    </div>
   </div>
 </body>
 </html>
