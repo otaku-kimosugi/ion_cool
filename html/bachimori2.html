@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>バチモリーナ - iON!楽曲 歌詞＋コール表</title>
+  <link rel="stylesheet" href="../css/kashi.css">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../img/ion!_banner.jpeg"> <!-- ここでタブの画像指定-->
+  <style>
+    .message {
+  font-size: 1.4em;
+  text-align: center;
+  margin-top: 50px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.countdown {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+#count {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: bold;
+  animation: pop 1s infinite;
+}
+
+@keyframes pop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-container">
+    <div class="header-left">
+      <button class="menu-button" id="menuToggle">≡</button>
+      <a href="../../index_9.html" class="logo">
+        <img src="../img/ion!.jpg" alt="iON!ロゴ">
+      </a>
+      <h1 class="header-title">バチモリーナ</h1>
+    </div>
+</header>
+
+<!-- サイドメニュー -->
+<nav class="side-menu" id="sideMenu">
+  <h2>メニュー</h2>
+  <ul>
+    <li><a href="../../index_9.html">トップ</a></li>
+    
+    <!-- ▼ メンバー紹介 (クリックで展開 ) -->
+    <li>
+      <a href="#" id="memberToggle">メンバー紹介 ▾</a>
+      <ul id="memberList" class="submenu">
+        <li><a href="/html/member/yuri.html">宇野ゆり</a></li>
+        <li><a href="/html/member/kono.html">儚寧この</a></li>
+        <li><a href="/html/member/peco.html">花丸ぺこ</a></li>
+        <li><a href="/html/member/nene.html">恋春ねね</a></li>
+        <li><a href="/html/member/mugi.html">栗栖むぎ</a></li>
+        <li><a href="/html/member/kurara.html">伽久耶くらら</a></li>
+        <li><a href="/html/member/rise.html">鈴都りせ</a></li>
+      </ul>
+    </li>
+
+    <li><a href="https://timetreeapp.com/public_calendars/ion_heroines">ライブ情報</a></li>
+  </ul>
+  <button id="menuClose">← 閉じる</button>
+</nav>
+<div id="overlay" class="overlay"></div>
+
+<!-- メンバー色リスト (右上固定パネル ) -->
+<div class="member-panel" id="memberPanel">
+  <ul>
+    <li>❤️ 宇野ゆり</li>
+    <li>💚 儚寧この</li>
+    <li>🧡 花丸ぺこ</li>
+    <li>🩷 恋春ねね</li>
+    <li>💛 栗栖むぎ</li>
+    <li>💜 伽久耶くらら</li>
+    <li>💙 鈴都りせ</li>
+    <li>🩵 名雲めんま</li>
+    <li>🤍 透明くりあ</li>
+    <li>🌈 全員(複数人)</li>
+    <li>📣 コール</li>
+  </ul>
+  <button id="togglePanel">閉じる</button>
+</div>
+
+<!-- 開くボタン (右下に固定 ) -->
+<button class="open-panel" id="openPanel">メンバー</button>
+
+  <div class="container">
+    <div class="lyrics">
+      <h1>バチモリーナ</h1>
+      <h3>作成：AMAMOGU,TOTEM HIM'S</h3>
+    <span class="all">🌈 ばっちり！ばっちり！ばっちり！バチモリーナ！ </span>     
+    <span class="pu">💜 ほら！カメラ構えてシャッター！</span>     
+    <span class="all">🌈 モ！モリ！盛り上がれよ！わっしょい！</span>
+    <span class="all">🌈 モ！モリ！盛り上げてこ！わっしょい！</span>
+    <span class="all">🌈 モ！モリ！盛り上がれよ！わっしょい！</span>
+    <span class="all">🌈 全然足りない！</span>
+    
+    <span class="g">💚 自分に合うアプリはまず必須！</span>
+    <span class="w">🤍 設定は事前に決めときましょう！</span>   
+    <span class="s">🩵 盛れそうな背景リサーチして</span> 
+    <span class="o">🧡 おしゃれスイーツでキュートマシ！</span>     
+        
+    <span class="b">💙 暗すぎる時はちょい待って！ </span>    
+    <span class="r">❤️ 照明焚いて </span>    
+    <span class="o">🧡 はい シャッターチャンス！</span>     
+    <span class="y">💛 顔周りは何も置かんで！</span>     
+    <span class="pu">💜 時空がぐにゃり</span>    
+    <span class="s">🩵 歪んじゃうから</span> 
+        
+    <span class="pi">🩷 それでもでもでも</span>     
+    <span class="pi">🩷 それでもでもでも</span>     
+    <span class="pi">🩷 日々の肌ケアは大事です (です)</span>     
+    <span class="g">💚 それでもでもでも</span>     
+    <span class="g">💚 それでもでもでも</span>     
+    <span class="g">💚 努力してるからかわいいの！！</span>     
+    
+    <span class="all">🌈 ばっちり！ばっちり！ばっちり！  </span>   
+    <span class="all">🌈 バチモリーナ！</span>    
+    <span class="b">💙斜め5度上目で顎は引いて</span>     
+    <span class="all">🌈 ばっちり！ばっちり！ばっちり！</span>     
+    <span class="all">🌈 バチモリーナ！</span>     
+    <span class="w">🤍 かわいく見せたい</span>     
+    <span class="s">🩵 だってやっぱ最初のね</span>     
+    <span class="s">🩵 印象大事がイマなので</span>     
+    <span class="all">🌈 ばっちり！ばっちり！ばっちり！</span>     
+    <span class="all">🌈 バチモリーナ！</span>     
+    <span class="pu">💜 くらえ！この渾身のシャッター！ </span>    
+        
+    <span class="w">🤍 涙袋描いて </span>    
+    <span class="w">🤍 髪はとぅるりん</span>     
+    <span class="w">🤍 ツヤサラうぇーぶ</span> 
+    <span class="pu">💜 どんな時もかわいくなれますように♡ </span>    
+        
+    <span class="y">💛 ノーマルカメラはちょい待って!</span>     
+    <span class="b">💙 無理ゲーすぎて</span> 
+    <span class="all">🌈 はい</span>
+    <span class="o">🧡 ゼッタイNO！</span>     
+    <span class="g">💚 いつでもかわいいから平気？</span>     
+    <span class="s">🩵 そういうことじゃないんです！</span>     
+    <span class="pi">🩷 「かわいく撮って！」</span>    
+
+    <span class="all">🌈 ばっちり！ばっちり！ばっちり！</span>     
+    <span class="all">🌈 バチモリーナ！</span>     
+    <span class="w">🤍 流行りのポーズはマストで必須！</span>     
+    <span class="all">🌈 ばっちり！ばっちり！ばっちり！</span>     
+    <span class="all">🌈 バチモリーナ！</span>     
+    <span class="s">🩵 急上昇載りたい </span>    
+    <span class="r">❤️ 何時間使ってでも</span>     
+    <span class="r">❤️ ベストショットを見つけたいの</span>     
+    <span class="all">🌈 ばっちり！ばっちり！ばっちり！</span>     
+    <span class="all">🌈 バチモリーナ！</span>     
+    <span class="pu">💜 ほら！カメラ構えてシャッター！</span>     
+    <span class="all">🌈 モ！モリ！盛り上がれよ！わっしょい！</span>
+    <span class="all">🌈 モ！モリ！盛り上げてこ！わっしょい！</span>
+    <span class="all">🌈 モ！モリ！盛り上がれよ！わっしょい！</span>
+    <span class="all">🌈 全然足りないよ！</span>     
+    <span class="s">🩵全然足りないよ!</span>     
+        
+    <span class="pu">💜 ばっちり！ばっちり！ばっちり！ </span>    
+    <span class="pu">💜 バチモリーナ！</span> 
+    <span class="r">❤️ ひとことだけ添えて君に届け</span>
+    <span class="all">🌈 ばっちり！ばっちり！ばっちり！</span>    
+    <span class="all">🌈 バチモリーナ！ </span>    
+    <span class="b">💙 ハート押してください </span>    
+    <span class="g">💚 だってやっぱキッカケは </span>    
+    <span class="g">💚 見つけてもらえることなので</span>     
+    <span class="all">🌈 ばっちり！ばっちり！ばっちり！ </span>    
+    <span class="all">🌈 バチモリーナ！</span>     
+    <span class="s">🩵 くらえ！この渾身のシャッター！</span>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="../../index_9.html" class="back-button">← トップに戻る</a>
+    </div>
+  </div>
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const sideMenu = document.getElementById('sideMenu');
+  const overlay = document.getElementById('overlay');
+  const menuClose = document.getElementById('menuClose');
+  const memberToggle = document.getElementById('memberToggle');
+  const memberList = document.getElementById('memberList');
+  const panel = document.getElementById("memberPanel");
+  const toggleBtn = document.getElementById("togglePanel");
+  const openBtn = document.getElementById("openPanel");
+
+  menuToggle.addEventListener('click', () => {
+    sideMenu.classList.add('open');
+    overlay.classList.add('show');
+  });
+  menuClose.addEventListener('click', () => {
+    sideMenu.classList.remove('open');
+    overlay.classList.remove('show');
+  });
+  overlay.addEventListener('click', () => {
+    sideMenu.classList.remove('open');
+    overlay.classList.remove('show');
+  });
+
+  memberToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    memberList.classList.toggle('show');
+  });
+
+  // 閉じる
+  toggleBtn.addEventListener("click", () => {
+    panel.classList.add("hidden");
+    openBtn.style.display = "block";
+  });
+
+  // 開く
+  openBtn.addEventListener("click", () => {
+    panel.classList.remove("hidden");
+    openBtn.style.display = "none";
+  });
+
+  // 初期はパネル表示、開くボタンは隠す
+  openBtn.style.display = "none";
+
+   // カウントダウンと自動リダイレクト
+  let count = 5;
+  const countDisplay = document.getElementById("count");
+
+  const timer = setInterval(() => {
+    count--;
+    countDisplay.textContent = count;
+    if (count <= 0) {
+      clearInterval(timer);
+      window.location.href = "../../index_9.html"; // トップに遷移
+    }
+  }, 1000);
+
+</script>
+</body>
+</html>
